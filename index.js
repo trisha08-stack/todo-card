@@ -154,10 +154,13 @@ deleteBtn.addEventListener("click", () => {
 });
 
 function initCollapse() {
-  if (descEl.textContent.length > 20) {
+  if (descEl.textContent.length > 30) {
     descEl.hidden = true;
+    expandBtn.style.display = "inline-block";
     expandBtn.setAttribute("aria-expanded", "false");
+    expandBtn.textContent = "Expand";
   } else {
+    descEl.hidden = false;
     expandBtn.style.display = "none";
   }
 }
