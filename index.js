@@ -22,7 +22,7 @@ const editDue = document.querySelector('[data-testid="test-todo-edit-due-date-in
 const priorityEl = document.querySelector('[data-testid="test-todo-priority"]');
 const indicator = document.querySelector('[data-testid="test-todo-priority-indicator"]');
 const timeText = document.querySelector('[data-testid="test-todo-time-remaining"]');
-const overDue = document.querySelector('[data-testid="test-todo-overdue-indicator"]');
+const overDueEl = document.querySelector('[data-testid="test-todo-overdue-indicator"]');
 const dueDateEl = document.querySelector('[data-testid="test-todo-due-date"]');
 
 const COLLAPSE_THRESHOLD = 30;
@@ -76,7 +76,7 @@ checkbox.addEventListener("change", () => {
  syncStatus(checkbox.checked ? "done" : "pending");
 });
 
-statusControl.addEventListener("change", () => {
+statusControl.addEventListener("change", (e) => {
   syncStatus(e.target.value);
 });
 
@@ -98,7 +98,7 @@ saveBtn.addEventListener("click", () => {
   state.desc = editDesc.value.trim() || state.desc;
   state.priority = editPriority.value;
 
-  if (editdue.value) {
+  if (editDue.value) {
     state.due = new Date(editDue.value + "T00:00:00");
     dueDateEl.setAttribute("datetime", editDue.value);
     dueDateEl.textContent = state.due.toLocaleDateString("en-US", {
@@ -118,7 +118,7 @@ saveBtn.addEventListener("click", () => {
   clearInterval(timer);
   if (state.status !== "Done") {
     updateTime();
-    timer = serInterval(updateTime, 30000);
+    timer = setInterval(updateTime, 30000);
   }
 
   form.hidden = true;
@@ -137,7 +137,7 @@ deleteBtn.addEventListener("click", () => {
 });
 
 function FormatTime(diff) {
-  const mins = Math.floor(diff / 6000);
+  const mins = Math.floor(diff / 60000);
   const hours = Math.floor(mins / 60);
   const days = Math.floor(hours / 24);
   
@@ -156,7 +156,7 @@ function updateTime() {
     return;
   } 
 
-const diff = state,due - new Date();
+const diff = state.due - new Date();
 
 if (diff < 0) {
   const hours = Math.abs(Math.floor(diff / 3600000));
