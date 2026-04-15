@@ -22,7 +22,7 @@ const editDue = document.querySelector('[data-testid="test-todo-edit-due-date-in
 const priorityEl = document.querySelector('[data-testid="test-todo-priority"]');
 const indicator = document.querySelector('[data-testid="test-todo-priority-indicator"]');
 const timeText = document.querySelector('[data-testid="test-todo-time-remaining"]');
-const overDueEl = document.querySelector('[data-testid="test-todo-overdue-indicator"]');
+const overdueEl = document.querySelector('[data-testid="test-todo-overdue-indicator"]');
 const dueDateEl = document.querySelector('[data-testid="test-todo-due-date"]');
 
 const COLLAPSE_THRESHOLD = 30;
@@ -71,17 +71,9 @@ expandBtn.addEventListener("click", () => {
   syncCollapseState();
 });
 
-
-checkbox.addEventListener("change", () => { 
- syncStatus(checkbox.checked ? "done" : "pending");
-});
-
-statusControl.addEventListener("change", (e) => {
-  syncStatus(e.target.value);
-});
-
 editBtn.addEventListener("click", () => {
   snapshot = { ...state };
+  
   editTitle.value = state.title;
   editDesc.value = state.desc;
   editPriority.value = status.priority;
@@ -136,7 +128,7 @@ deleteBtn.addEventListener("click", () => {
   alert("Delete task clicked");
 });
 
-function FormatTime(diff) {
+function formatTime(diff) {
   const mins = Math.floor(diff / 60000);
   const hours = Math.floor(mins / 60);
   const days = Math.floor(hours / 24);
@@ -190,6 +182,14 @@ if (value === "done") {
   timer = setInterval(updateTime, 30000);
 }
  }
+
+checkbox.addEventListener("change", () => { 
+ syncStatus(checkbox.checked ? "done" : "pending");
+});
+
+statusControl.addEventListener("change", (e) => {
+  syncStatus(e.target.value);
+});
 
 setPriorityUI(state.priority);
 expandBtn.serAttribute("aria-expanded", "false");
