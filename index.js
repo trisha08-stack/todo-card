@@ -154,7 +154,7 @@ deleteBtn.addEventListener("click", () => {
 });
 
 function initCollapse() {
-  if (descEl.textContent.length > 120) {
+  if (descEl.textContent.length > 20) {
     descEl.hidden = true;
     expandBtn.setAttribute("aria-expanded", "false");
   } else {
