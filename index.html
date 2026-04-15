@@ -13,21 +13,29 @@
            type="checkbox" 
             data-testid="test-todo-complete-toggle"
             aria-label="Mark task as complete" />
-        <span>
      <h3 data-testid="test-todo-title">
        Finish HNG Todo Task
         </h3>
-        </span>
         </label>
-      <p id="todo-description" data-testid="test-todo-collapsible-section"> Complete the HNG frontend task by building a functional and accessible Todo card.
-      </p>
+      <div class="meta-top">
+        <select data-testid="test-todo-status-control" aria-label="Task status">
+          <option value="Pending">Pending</option>
+          <option value="in progress">In progress</option>
+          <option  value="done">Done</option>
+        </select>
+      </div>
       <botton type="button"
         data-testid="test-todo-expand-toggle"
         aria-expanded="false"
         aria-controls="todo-description">Expand</botton>
+      <p id="todo-description" data-testid="test-todo-collapsible-section"> Complete the HNG frontend task by building a functional and accessible Todo card.
+      </p>
       <div class="meta">
+        <div class="priority-row">
       <strong data-testid="test-todo-priority" aria-label="Priority: High"> High
         </strong>
+          <span data-testid="test-todo-priority-indicator"></span>
+        </div>
       <ul data-testid="test-todo-tags">
         <li data-testid="test-todo-tag-urgent">Urgent</li>
         <li data-testid="test-todo-tag-work">Work</li>
@@ -35,16 +43,10 @@
       <p data-testid="test-todo-due-date"> Due:
         <time datetime="2026-04-15">April 15, 2026</time>
       </p>
-      <p data-testid="test-todo-time-remaining" aria-live="polite"> Due in 3 days
-      </p>
+      <p data-testid="test-todo-time-remaining" aria-live="polite"></p>
         <span data-testid="test-todo-overdue-indicator"></span>
       <span data-testid="test-todo-status" aria-label="Status: Pending">Pending
       </span>
-        <select data-testid="test-todo-status-control" aria-label="Task status">
-          <option value="Pending">Pending</option>
-          <option value="in progress">In progress</option>
-          <option  value="Done">Done</option>
-        </select>
       </div>
       <div class="btn-container">
         <button data-testid="test-todo-edit-button" aria-label="Edit task">Edit 
