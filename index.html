@@ -1,77 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Todo Card</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Todo Card</title>
   <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <article data-testid="test-todo-card">
-      <label class="title-row">
-        <input
-           type="checkbox" 
-            data-testid="test-todo-complete-toggle"
-            aria-label="Mark task as complete" />
-     <h3 data-testid="test-todo-title">
-       Finish HNG Todo Task
-        </h3>
-        </label>
-      <div class="meta-top">
-        <select data-testid="test-todo-status-control" aria-label="Task status">
-          <option value="Pending">Pending</option>
-          <option value="in progress">In progress</option>
-          <option  value="done">Done</option>
-        </select>
+</head>
+<body>
+  <article data-testid="test-todo-card">
+    <label class="title-row">
+      <input type="checkbox" data-testid="test-todo-complete-toggle" aria-label="Mark task as complete" />
+      <h3 data-testid="test-todo-title">Finish HNG Todo Task</h3>
+    </label>
+
+    <!-- Status control moved BEFORE expand toggle to match required tab order -->
+    <div class="meta-top">
+      <select data-testid="test-todo-status-control" aria-label="Task Status">
+        <option value="pending">Pending</option>
+        <option value="in progress">In Progress</option>
+        <option value="done">Done</option>
+      </select>
+    </div>
+
+    <button type="button"
+      data-testid="test-todo-expand-toggle"
+      aria-expanded="false"
+      aria-controls="todo-description">
+      Expand
+    </button>
+
+    <p id="todo-description" data-testid="test-todo-collapsible-section">
+      Complete the HNG frontend task by building a functional and accessible Todo card.
+    </p>
+
+    <div class="meta">
+      <div class="priority-row">
+        <strong data-testid="test-todo-priority">High</strong>
+        <span data-testid="test-todo-priority-indicator"></span>
       </div>
-      <botton type="button"
-        data-testid="test-todo-expand-toggle"
-        aria-expanded="false"
-        aria-controls="todo-description">Expand</botton>
-      <p id="todo-description" data-testid="test-todo-collapsible-section"> Complete the HNG frontend task by building a functional and accessible Todo card.
-      </p>
-      <div class="meta">
-        <div class="priority-row">
-      <strong data-testid="test-todo-priority" aria-label="Priority: High"> High
-        </strong>
-          <span data-testid="test-todo-priority-indicator"></span>
-        </div>
+
       <ul data-testid="test-todo-tags">
         <li data-testid="test-todo-tag-urgent">Urgent</li>
         <li data-testid="test-todo-tag-work">Work</li>
       </ul>
-      <p>Due: 
-        <time datetime="2026-04-15" data-testid="test-todo-due-date">April 15, 2026</time>
+
+      <p>
+        Due: <time datetime="2026-04-15" data-testid="test-todo-due-date">April 15, 2026</time>
       </p>
+
       <p data-testid="test-todo-time-remaining" aria-live="polite"></p>
-        <span data-testid="test-todo-overdue-indicator"></span>
-      <span data-testid="test-todo-status" aria-label="Status: Pending">Pending
-      </span>
-      </div>
-      <div class="btn-container">
-        <button data-testid="test-todo-edit-button" aria-label="Edit task">Edit 
-        </button>
-        <button data-testid="test-todo-delete-button" aria-label="Delete button">Delete
-          </button>
-      </div>
-      <form data-testid="test-todo-edit-form" class="edit-form" hidden>
-        <label for="edit-title">Title</label>
-        <input id="edit-title" data-testid="test-todo-edit-title-input" type="text" />
-        <label for="edit-description">Description</label>
-        <textarea id="edit-description" data-testid="test-todo-edit-description-input"></textarea>
-        <label for="edit-priority">Priority</label>
-        <select id="edit-priority" data-testid="test-todo-edit-priority-select">
-          <option>Low</option>
-          <option>Medium</option>
-          <option>High</option>
-        </select>
-        <label for="edit-due-date">Due Date</label>
-        <input id="edit-due-date" type="date" data-testid="test-todo-edit-due-date-input" />
-        <button type="button" data-testid="test-todo-save-button">Save</button>
-        <button type="button" data-testid="test-todo-cancel-button">Cancel</button>
-      </form>
-    </article>
-    
-    <script src="index.js"></script>
-  </body>
+
+      <span data-testid="test-todo-overdue-indicator"></span>
+
+      <span data-testid="test-todo-status">Pending</span>
+    </div>
+
+    <div class="btn-container">
+      <button data-testid="test-todo-edit-button">Edit</button>
+      <button data-testid="test-todo-delete-button">Delete</button>
+    </div>
+
+    <form data-testid="test-todo-edit-form" class="edit-form" hidden>
+      <label for="edit-title">Title</label>
+      <input id="edit-title" data-testid="test-todo-edit-title-input" type="text" />
+
+      <label for="edit-description">Description</label>
+      <textarea id="edit-description" data-testid="test-todo-edit-description-input"></textarea>
+
+      <label for="edit-priority">Priority</label>
+      <select id="edit-priority" data-testid="test-todo-edit-priority-select">
+        <option>Low</option>
+        <option>Medium</option>
+        <option>High</option>
+      </select>
+
+      <label for="edit-due-date">Due Date</label>
+      <input id="edit-due-date" type="date" data-testid="test-todo-edit-due-date-input" />
+
+      <button type="button" data-testid="test-todo-save-button">Save</button>
+      <button type="button" data-testid="test-todo-cancel-button">Cancel</button>
+    </form>
+  </article>
+
+  <script src="index.js"></script>
+</body>
 </html>
